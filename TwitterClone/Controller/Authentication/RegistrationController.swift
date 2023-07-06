@@ -111,6 +111,15 @@ class RegsitrationController: UIViewController {
             }
             guard let uid = result?.user.uid else {return}
             
+            let values = ["email": email, "userName": userName, "fullName": fullName]
+            let ref = Database.database().reference().child("users").child(uid)
+            //Database.database().reference() ... Looks at info.plist to find url for database for this app
+            //.child("users") ... Inside database url, creats a structure called "users"
+            //.child(uid) ... Inside structure "users," creates a structure called the uid of authenticaied user.
+            ref.updateChildValues(values) {(error, ref) in
+                print("DEBUG: Successfully updated user information")
+            }
+            
             print("DEBUG: Successfully regestered user")
         }
     }
