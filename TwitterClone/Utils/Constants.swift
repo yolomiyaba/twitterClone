@@ -18,3 +18,5 @@ let REF_USERS = DB_REF.child("users")
 //.child("users") ... Inside database url, creats a structure called "users"
 //.child(uid) ... Inside structure "users," creates a structure called the uid of authenticaied user.
 
+let STORAGE_REF = Storage.storage().reference()
+let STORAGE_PROFILE_IMAGES = STORAGE_REF.child("profile_images")
