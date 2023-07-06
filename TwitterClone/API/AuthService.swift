@@ -15,11 +15,13 @@ struct AuthCredentials {
     let userName: String
     let fullName: String
     let profileImage: UIImage
-}
+} // created a struct to avoid having many input parameters, which would be non-aethetic
 
 struct AuthService {
     static let shared = AuthService() // By creating a static instance of AuthSercice, every time we use AuthService.shared, this particular instance of AuthService will be used!
-    
+    func logUserIn(withEmail email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
     func registerUser(credentials: AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void) {
         let email = credentials.email
         let password = credentials.password
