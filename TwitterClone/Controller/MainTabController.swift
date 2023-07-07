@@ -23,12 +23,19 @@ class MainTabController: UITabBarController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        logUserOut()
+        //logUserOut()
         super.viewDidLoad()
         view.backgroundColor = .twitterBlue
+        fetchUser()
         authenticateUserAndConfigureUI()
+        //fetchUser()
     }
     // MARK: - API
+    
+    func fetchUser() {
+        UserService.shared.fetchUser() //By configuring user in tab controller, we can reference this user info from controllers within tab bar
+        
+    }
     func authenticateUserAndConfigureUI() {
         //print(Auth.auth().currentUser)
         if Auth.auth().currentUser == nil {
