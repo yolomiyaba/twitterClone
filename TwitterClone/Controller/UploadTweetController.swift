@@ -10,6 +10,8 @@ import UIKit
 
 class UploadTweetController: UIViewController {
     // MARK: - Properties
+    
+    private let user: User // By not putting ! or ? here, we let our code know that this property has to be initialized
     //lazy var ensures that this element will be lazily loaded
     //Meaning that this button will only be loaded when called, which we load in configureUI()
     //Without this lazy decoration, the handler will not work due to the way code configuration works
@@ -25,10 +27,30 @@ class UploadTweetController: UIViewController {
         button.addTarget(self, action: #selector(handleTweet), for: .touchUpInside)
         return button
     }()
+    
+    private let profileImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.setDimensions(width: 48, height: 48)
+        iv.layer.cornerRadius = 48 / 2
+        iv.backgroundColor = .twitterBlue
+        return iv
+    }()
     // MARK: - Lifecycle
+    //We created a custom initializer to ensure that we pass the user to this controller.
+    init(user: User){
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print("DEBUG: User is \(user.userName)")
     }
     // MARK: - Selectors
     @objc func handleCancel() {
@@ -42,6 +64,16 @@ class UploadTweetController: UIViewController {
     // MARK: - Helpers
     func configureUI() {
         view.backgroundColor = .white
+        configureNavigationBar()
+        
+        view.addSubview(profileImageView)
+        profileImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, paddingTop: 16, paddingLeft: 16)
+        
+        profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
+        //SDWEBImage actually caches images, making it much frendlier for our app!
+    }
+    
+    func configureNavigationBar() {
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.isTranslucent = false
