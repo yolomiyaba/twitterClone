@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11CB9556AE24A5D7E7710478 /* Pods_TwitterClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C1DBEB97FC3F355B91272D /* Pods_TwitterClone.framework */; };
+		4F8382722A5966B9002C10EA /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8382712A5966B9002C10EA /* UploadTweetController.swift */; };
 		4F94EC1D2A20FD7A00E9DED0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94EC1C2A20FD7A00E9DED0 /* Utilities.swift */; };
 		4FBE92672A564F5700C19F08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE92662A564F5700C19F08 /* Constants.swift */; };
 		4FBE92692A56793200C19F08 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE92682A56793200C19F08 /* AuthService.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F8382712A5966B9002C10EA /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
 		4F94EC1C2A20FD7A00E9DED0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		4FBE92662A564F5700C19F08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FBE92682A56793200C19F08 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				4FDD4EEC2A1E7FC600519B19 /* ExploreController.swift */,
 				4FDD4EEE2A1E7FD700519B19 /* NotificationsController.swift */,
 				4FDD4EF02A1E7FE000519B19 /* ConversationsController.swift */,
+				4F8382712A5966B9002C10EA /* UploadTweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				4FDD4EF32A1F240D00519B19 /* Extensions.swift in Sources */,
 				4FDD4EF62A1F2AE700519B19 /* LoginController.swift in Sources */,
 				4FBE92692A56793200C19F08 /* AuthService.swift in Sources */,
+				4F8382722A5966B9002C10EA /* UploadTweetController.swift in Sources */,
 				4FBE926D2A580B9400C19F08 /* User.swift in Sources */,
 				4FDD4EED2A1E7FC600519B19 /* ExploreController.swift in Sources */,
 				4FDD4EB32A1E7D3C00519B19 /* SceneDelegate.swift in Sources */,
