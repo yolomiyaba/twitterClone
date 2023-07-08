@@ -10,6 +10,17 @@ import Firebase
 
 class MainTabController: UITabBarController {
     // MARK: - Properties
+    var user: User? {
+        didSet { // didSet enables us to do something once a property has been set, which ensures that the property has been set
+            print("DEBUG: Did set user in main tab") // didSet block gets excecuted once user has been set in the fetchUser function
+            
+            //How to correctly pass values through a tab bar controller
+            guard let nav = viewControllers?[0] as? UINavigationController else {return}
+            guard let feed = nav.viewControllers.first as? FeedController else {return}
+            
+            feed.user = user
+        }
+    }
     
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -33,8 +44,9 @@ class MainTabController: UITabBarController {
     // MARK: - API
     
     func fetchUser() {
-        UserService.shared.fetchUser() //By configuring user in tab controller, we can reference this user info from controllers within tab bar
-        
+        UserService.shared.fetchUser { user in
+            self.user = user
+        } //By configuring user in tab controller, we can reference this user info from controllers within tab bar
     }
     func authenticateUserAndConfigureUI() {
         //print(Auth.auth().currentUser)
