@@ -91,7 +91,7 @@ class MainTabController: UITabBarController {
     
     // Programattically configure ViewControllers to TabBarController
     func configureViewControllers() {
-        let feed = FeedController()
+        let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let nav1 = templateNavigationController(image: UIImage(named: "home_unselected"), rootNavigationController: feed)
         let explore = ExploreController()
         let nav2 = templateNavigationController(image: UIImage(named: "search_unselected"), rootNavigationController: explore)
