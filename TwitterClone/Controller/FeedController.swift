@@ -11,6 +11,9 @@ import SDWebImage
 private let reuseIdentifier = "TweetCell"
 class FeedController: UICollectionViewController {
     // MARK: - Properties
+    private var tweets = [Tweet]() {
+        didSet {collectionView.reloadData()}
+    }
     var user: User? {
         didSet {
             print("DEBUG: Did set user in feed controller")// didSet block gets excecuted once user has been set in the fetchUser function
@@ -29,7 +32,8 @@ class FeedController: UICollectionViewController {
     
     func fetchTweets() {
         TweetService.shared.fetchTweets { tweets in
-            print("DEBUG: Tweets are \(tweets)")
+            print("DEBUG: Tweets are \(tweets.count)")
+            self.tweets = tweets
         }
     }
     // MARK: - Helpers
@@ -56,17 +60,18 @@ class FeedController: UICollectionViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
 }
-
+// MARK: -UICollectionViewDelegate/DataSource
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return tweets.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
         return cell
     }
 }
-
+// MARK: -UICollectionViewFlowLayout
 extension FeedController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
