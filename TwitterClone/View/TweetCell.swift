@@ -7,19 +7,28 @@
 
 import UIKit
 
+protocol TweetCellDelegate: AnyObject {
+    func handleProfileImageTapped(_ cell: TweetCell)
+}
 class TweetCell: UICollectionViewCell {
     // MARK: -Properties
     var tweet: Tweet? {
         didSet { configure() }
     }
     
-    private let profileImageView: UIImageView = {
+    weak var delegate: TweetCellDelegate? //When you create a delegate, you should always make it a weak variable, so that memory is managed correctly, and you do not get a retain cycle, where two things have a strong reference to each other and cannot be destroyed
+    
+    private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.setDimensions(width: 48, height: 48)
         iv.layer.cornerRadius = 48 / 2
         iv.backgroundColor = .twitterBlue
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        iv.addGestureRecognizer(tap)
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -108,6 +117,10 @@ class TweetCell: UICollectionViewCell {
     }
     
     // MARK: -Selectors
+    @objc func handleProfileImageTapped() {
+        print("DEBUG: Profile Image tapped")
+        delegate?.handleProfileImageTapped(self)
+    }
     @objc func handleCommentTapped() {
         print("DEBUG: Comment tapped")
     }
