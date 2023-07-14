@@ -71,6 +71,7 @@ class UploadTweetController: UIViewController {
     // MARK: - API
     // MARK: - Helpers
     func configureUI() {
+//        view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .white
         configureNavigationBar()
         
