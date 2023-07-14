@@ -66,6 +66,7 @@ class UploadTweetController: UIViewController {
                 print("DEBUG: Failed to upload tweet with error \(error.localizedDescription)")
             }
             self.dismiss(animated: true, completion: nil)
+            print("Test")
         }
     }
     // MARK: - API
