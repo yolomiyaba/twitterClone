@@ -20,6 +20,5 @@ class ConversationsController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.title = "Conversations"
-        
     }
 }
